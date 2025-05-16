@@ -77,6 +77,26 @@ After renaming and restarting the server, we’ll configure it to act as a Domai
 ![6](https://github.com/user-attachments/assets/5491173c-d121-41b5-898b-445b3a6f4f4d)
 
 
+---
+
+### 🏁 Step 3: Promote Server to Domain Controller
+
+Once installation finishes click: 
+
+> **Promote this server to a domain controller**
+![6](https://github.com/user-attachments/assets/cbc72433-73fd-4f3e-8849-66ab4f6e0d3a)
+1. Choose **"Add a new forest"**
+2. Enter a **Root domain name** (e.g., `LAB.local`) we are going to use LAB.local since its a local lab but you can change it to anything you want .
+   ![7](https://github.com/user-attachments/assets/9f3717e2-ee0e-41a3-b6bf-d42c74a4ee11)
+4. Click **Next** to proceed to the Domain Controller Options screen.
+   -For this Screen its going to ask you to make a password for restore mode just choose any password perferabbly the same one you made for the windows server.
+   -Continue to click next and leave all the data bases and setting paths and options as deafult.
+5. Let it run through the prerequisites check and make sure everyhting is okay. It will take a few seconds and dont worry about the warnings that pop up.
+   ![9](https://github.com/user-attachments/assets/fa28247b-ceee-4031-92d4-d2e335123b01)
+6. Click install and let you VM reboot. 
+
+
+
 
 
 
