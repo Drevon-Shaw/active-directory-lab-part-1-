@@ -46,7 +46,7 @@ You can obtain official ISO files from Microsoft:
 
 ### 🔧 Step 1: Rename the Server
 
-We’ll start by renaming the default computer name to `DC01`.
+We’ll start by renaming the default computer name to `DC01`. In this instance the default computer is the Windows 2022 server. 
 
 1. Click **Start** and search for `View your PC name`
 2. Click **Rename this PC**
