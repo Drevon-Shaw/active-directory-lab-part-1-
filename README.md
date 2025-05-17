@@ -135,10 +135,8 @@ To enable secure protocols for future labs, we’ll install the Certificate Serv
 When installation completes and the server restarts, you’ll see a notification to configure the role:
 
 1. In **Server Manager**, click **Configure Active Directory Certificate Services**  
-   ![Configure Notification](images/configure-adcs-notify.png)
 2. Use the default (domain) credentials and click **Next**
 3. Check **Certification Authority** and click **Next**  
-   ![Select CA](images/select-ca.png)
 4. Accept all remaining defaults, clicking **Next** on each screen
 5. On the final page, click **Configure** and wait for the green ✓ confirmation
 6. Click **Close** and allow the server to restart if prompted
@@ -252,6 +250,284 @@ These are all the users I created
 ---
 
 > ✅ You now have **4 custom users** added to your domain — ready to be used for testing group policies and login behavior from other VMs.
+
+
+
+---
+
+### 🖥️ Step 8: Attach Windows 10 VM to the Domain
+
+Before joining the domain, we need to ensure that both virtual machines (Windows Server and Windows 10) are on the same **NAT Network** and using proper static IP addresses.
+
+---
+
+### 🌐 Set Up NAT Network in VirtualBox
+
+1. In **Oracle VirtualBox**, click **File > Tools > Network Manager**
+2. Click **NAT Network > Create**
+3. Rename the new network to `AD Network` or `Active Directory Network`
+4. Leave the rest of the settings as default and click **Apply**
+![18](https://github.com/user-attachments/assets/45cc50b4-78ea-4312-8413-9258744c3aaa)
+
+---
+
+### 🧾 VM Settings for Windows Server and Windows 10
+
+1. Open **Settings** for both VMs
+2. Under **System**, adjust RAM if needed — just make sure it stays in the green zone. Remember we are now runign 2 vms therefore you might need to lower it. 
+3. Under **Network**, ensure **Adapter 1** is set to:
+   - **Attached to**: NAT Network
+   - **Name**: `AD Network`
+![19](https://github.com/user-attachments/assets/a0583b10-9be7-478a-901a-494e2bde61a5)
+
+---
+
+### 🌍 Set a Static IP for the Domain Controller (DC01)
+
+1. Start the Windows Server VM (`DC01`)
+2. Open **Command Prompt** and run:
+   ```
+   ipconfig
+   ```
+3. Note the current IP address (e.g., `10.0.2.15`)
+   
+   ![20](https://github.com/user-attachments/assets/8bfe1a15-a917-4e77-984d-ebadda3a10a1)
+
+4. Right-click the network icon (bottom-right) > **Open Network & Internet Settings**
+5. Click **Change Adapter Options**
+6. Right-click the adapter > **Properties**
+   ![22](https://github.com/user-attachments/assets/696875c0-2002-4f02-bd45-d6b7b0255107)
+8. Double-click **Internet Protocol Version 4 (TCP/IPv4)**
+   ![23](https://github.com/user-attachments/assets/4fab1aec-9bf7-4bcf-892c-a96c7e2f9ba9)
+
+   
+
+Enter the following: Copy everyting we seen in the ipconfig command propmt
+- **IP address**: `10.0.2.15`
+- **Subnet mask**: `255.255.255.0`
+- **Default gateway**: `10.0.2.1` *(if applicable)*
+- **Preferred DNS server**: `127.0.0.1` the dns server we are setting to ourselves, because we are the host.
+  ![24](https://github.com/user-attachments/assets/0951ebe2-4732-4f0c-9184-3766f409782c)
+
+
+
+
+---
+
+### 💻 Configure Windows 10 Client
+
+1. Start the **Windows 10 VM**
+2. Log in with your local user account
+3. Change the PC name to `WS01`:
+   - **Settings > System > About > Rename this PC**
+   - Restart when prompted
+
+![image](https://github.com/user-attachments/assets/15175925-9503-452b-8606-7834a89f1fb0)
+
+
+4. Open **Command Prompt** and run:
+   ```
+   ipconfig
+   ```
+
+5. Go to **Network Settings > Change Adapter Options**
+6. Set static IP like before:
+   - **IP address**: `10.0.2.16` we are going to make the IPs sequential in this case 
+   - **Subnet mask**: `255.255.255.0`
+   - **Default gateway**: `10.0.2.1`
+   - **Preferred DNS server**: `10.0.2.15` *(points to Domain Controller)*
+**Be aware you IPs might be different than mine.**
+---
+
+### 🔗 Join the Domain from Windows 10
+
+1. In **Settings**, search for **Access Work or School**
+   ![26](https://github.com/user-attachments/assets/77d9f1fe-e6f3-4dfa-8e85-5775e6a4ccd3)
+3. Click **Connect > Join this device to a local Active Directory domain**
+4. Enter your domain (e.g., `LAB.local`)
+   ![image](https://github.com/user-attachments/assets/292f76a7-742e-4857-b7b1-ca185e500ec9)
+
+6. When prompted, enter:
+   - **Username**: `Administrator`
+   - **Password**: (the one set on DC01)
+  ![image](https://github.com/user-attachments/assets/2284de4f-d087-4ff6-9fc7-2763528a54ef)
+
+
+7. Restart when prompted
+
+---
+
+### 🔓 Log In as a Domain User
+
+1. At the login screen, click **Other User**
+2. Enter the credentials of one of your custom users (e.g., `ljackson`, `kmahomes`, etc.)
+3. Format: `LAB\username`
+
+---
+
+### ✅ Confirm on the Domain Controller
+
+1. Go back to `DC01`
+2. Open **Active Directory Users and Computers**
+3. Click on the **Computers** container
+4. You should now see `WS01` listed — showing it's joined to the domain
+
+![image](https://github.com/user-attachments/assets/70e51166-0d56-404c-85fb-f3517425d983)
+
+---
+
+> 🥳 Congratulations! Your Windows 10 client is now successfully joined to the domain and is ready for testing policies and user access in your lab.
+
+---
+
+### 🧱 Step 9: Organizational Units (OUs) and Groups
+
+Let’s now dive deeper into structuring and managing users using **Organizational Units (OUs)** and **Security Groups**.
+
+---
+
+### 📁 What Are Organizational Units?
+
+Organizational Units are used to organize Active Directory objects such as:
+- Users
+- Computers
+- Groups
+- Even other OUs
+
+> 🔸 OUs are the smallest administrative units where you can assign Group Policies  
+> 🔸 **OUs can contain groups, but groups cannot contain OUs**
+
+---
+
+### 🏗️ Create Department-Based Organizational Units
+
+1. Go to **Tools > Active Directory Users and Computers**
+2. Right-click your domain (`LAB.local`) > **New > Organizational Unit**
+  ![28](https://github.com/user-attachments/assets/93ed0abd-e80e-41bd-ae01-5a88153e22f5)
+
+4. Create the following OUs:
+   - `Engineering`
+   - `Management`
+   - `IT`
+
+![29](https://github.com/user-attachments/assets/6797cfd3-6a6b-4087-b925-31ed2dca93f2)
+
+
+4. Move users into appropriate departments:
+   - `ljackson` and `nmandela` → `Engineering`
+   - `gowens` 'khamilton' → `Management`
+   - `Administrator` → `IT`
+
+![30a](https://github.com/user-attachments/assets/9a46496c-8763-435a-b864-902f2a7b9982) 
+![30a](https://github.com/user-attachments/assets/64f137e6-213f-40f3-9831-2ded4711a7f2)
+![30a](https://github.com/user-attachments/assets/33bb08b6-68ab-4145-9bbf-88202193bc9e)
+
+---
+
+### 🗂️ Create a Nested Organizational Unit
+
+You can create an OU inside another OU for more structure.
+
+1. Right-click the `IT` OU > **New > Organizational Unit**
+2. Name it `Administrators`
+![30a](https://github.com/user-attachments/assets/bb0ce25a-fcc9-4d7f-9c94-239c8c772c1f)
+
+4. Move the `Administrator` account into the `Administrators` OU
+![30a](https://github.com/user-attachments/assets/64505e53-359e-4d09-8e3d-b05e6004e701)
+
+---
+
+### 👥 Lets Create a Group inside the engineeing OU 
+
+1. Go to the `Engineering` OU
+2. Right-click > **New > Group**
+  ![33](https://github.com/user-attachments/assets/e55a9ac3-0ab4-417d-8bbe-bdf26e86a974)
+4. Name the group: `EngineeringShare`
+5. Make sure **Group type** is set to **Security**
+![33](https://github.com/user-attachments/assets/1a6a12c9-f87a-40fd-92ac-fcac4e7253ec)
+7. Click **OK**
+
+---
+
+### ➕ Add Members to the Group
+
+1. Double-click `EngineeringShare` group
+2. Go to the **Members** tab
+3. Click **Add** and add:
+   - `ljackson`
+   - `nmandela`
+   - `gowens` (from Management OU) you can add members from other OUs if they require access in this instance Gary from manangment would want access to the engineering group too.
+![35](https://github.com/user-attachments/assets/0482789e-260d-453d-b5cf-0d4cbf703f9f)
+
+
+---
+
+### 📂 Create and Secure a Shared Folder
+
+Now what we can do with this gorup is we’ll create a shared folder and restrict access to only the `EngineeringShare` group.
+
+1. Go to **Server Manager > File and Storage Services > Shares**
+   ![38](https://github.com/user-attachments/assets/0009c73e-b969-48af-91b6-6abe22cd2441)
+3. On the right, under **Tasks**, click **New Share**
+   ![40](https://github.com/user-attachments/assets/3eab63b9-3884-47a4-884b-20d06fb0972a)
+5. Select **SMB Share - Quick**
+  ![41](https://github.com/user-attachments/assets/4cfaa7f9-74c6-4ba8-ba93-850f2a80feeb)
+7. Leave the default location in the `C:` drive
+  ![41](https://github.com/user-attachments/assets/f63517f8-7142-47a2-949c-fbe9d4aee732)
+9. Name the share: `EngineeringShare`
+  ![41](https://github.com/user-attachments/assets/94edd22e-fd8e-419b-abdd-5f85cde357b1)
+11. Note the share path: `\\DC01\EngineeringShare`
+
+---
+
+### 🔐 Customize Permissions for the Group
+
+1. When you reach the **Permissions** page, click **Customize Permissions**
+  ![41](https://github.com/user-attachments/assets/031b31c3-b247-44b2-9f6a-3915c6fd5f30)
+3. Click **Disable Inheritance** > choose **Convert inherited permissions into explicit permissions**
+5. Remove existing users (as needed) as you can see we have more users than needed **I would remove both LAB\USERS**
+6. Click **Add > Select a Principal** and add `EngineeringShare` This is the group we created.
+   ![48](https://github.com/user-attachments/assets/d9e0764b-f8c0-4296-b079-1d47f60face4)
+8. Grant **Read/Write** permissions
+9. Click **Apply > OK > Next > Create > Close** **make sure to apply the changes**
+
+---
+
+### 🧪 Access the Share from Windows 10 Client
+
+1. Log into the Windows 10 VM using a user in the `EngineeringShare` group (e.g., `ljackson`) this varies depending on what users you have in the engennering group
+2. Open **File Explorer**
+3. Go to **Network**, find `DC01`, and open `EngineeringShare` **Remember to turn on network sharing, also both vms have to be active**
+![48](https://github.com/user-attachments/assets/9a3b68ea-2bbd-4e2c-ba0c-393250baf4e3)
+
+You should now be able to open, create, and edit files in this shared folder.
+![48](https://github.com/user-attachments/assets/ec9128a6-8ff7-4699-8531-946be102d794)
+
+
+---
+
+### 💾 Optional: Map Network Drive **This is a common task used by IT administrators for easier access to shared files and folders**
+
+To map the shared folder as a drive letter:
+
+1. Open **This PC**
+2. Right-click on blank space > **Map Network Drive**
+  ![55](https://github.com/user-attachments/assets/9f7c8fe6-4d19-42b0-b5d7-aa00c336a094)
+4. Choose a drive letter (e.g., `Z:`)
+5. Enter the folder path: `\\DC01\EngineeringShare`
+   ![55](https://github.com/user-attachments/assets/3064dbd1-3edf-486c-a3d5-f689696e38bd)
+7. Click **Finish**
+8. Now the EngineeringShare folder is showing up like a regular driv eon your computer
+
+![57](https://github.com/user-attachments/assets/6a156193-c072-4b1c-97d6-a2fc20d29a6d)
+
+
+
+> 🧠 Now you’ve successfully created OUs, organized users, created security groups, applied permissions, and validated access from the client side.
+
+
+
+
 
 
 
