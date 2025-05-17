@@ -181,7 +181,7 @@ To keep things tidy, let’s move all default groups into a separate OU.
 
 1. Right-click on the domain (e.g., `lab.local`)
 2. Hover over **New > Organizational Unit**
-   ![user account dashboard](https://github.com/user-attachments/assets/e06b599c-acbd-45a7-8659-7eee6c631a91)
+![user account dashboard](https://github.com/user-attachments/assets/e06b599c-acbd-45a7-8659-7eee6c631a91)
 4. Name it `Groups`
 ![image](https://github.com/user-attachments/assets/a0b3ce87-6150-47d4-9d61-79a7e5d28d92)
 
@@ -213,8 +213,6 @@ You’ll now see only two accounts in `Users`:
 
 The **Administrator** account is the domain's top-level account — it belongs to multiple powerful groups including **Domain Admins**, **Enterprise Admins**, and more. It’s like having the keys to the castle.
 
-📸 *Screenshot: Administrator Account Properties*  
-![Admin Properties](images/admin-properties.png)
 
 > ⚠️ Best practice is to avoid using this account for everyday activity.
 
@@ -239,9 +237,7 @@ Let’s create domain users that we’ll later use to log in from our Windows 10
 1. Set a password for the account (you can use the same for all in this lab)
 2. Check **Password never expires** (for lab convenience)
 3. Click **Next**, then **Finish**
-
-📸 *Screenshot: Password Options*  
-![Password Options](images/password-options.png)
+![image](https://github.com/user-attachments/assets/f707e364-5b30-4479-af80-0a5c79a06cf2)
 
 ---
 
@@ -251,13 +247,8 @@ Instead of starting from scratch, you can **right-click your first user > Copy**
 
 - Create 3 additional users using this method
 - Use the same password, different names/logins (e.g., `kmahomes`, `tbrady`, `jjallen`)
-
-📸 *Screenshot: Copy User*  
-![Copy User](images/copy-user.png)
-
-📸 *Screenshot: Final List of Users*  
-![User List](images/final-users.png)
-
+![17](https://github.com/user-attachments/assets/0ef4f137-42a3-42ab-b1a7-c1c30c9fa298)
+These are all the users I created 
 ---
 
 > ✅ You now have **4 custom users** added to your domain — ready to be used for testing group policies and login behavior from other VMs.
