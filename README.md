@@ -143,12 +143,125 @@ When installation completes and the server restarts, you’ll see a notification
 5. On the final page, click **Configure** and wait for the green ✓ confirmation
 6. Click **Close** and allow the server to restart if prompted
 
-📸 *Screenshot: Configuration Complete*  
-![ADCS Complete](images/adcs-complete.png)
 
 ---
 
 > You now have a fully functional **Domain Controller** with **Active Directory Certificate Services** installed, ready for advanced tasks in later parts of the lab.
+
+
+---
+
+### 👥 Step 7: Create Domain Users & Organize AD Structure
+
+Now we’ll create real users in Active Directory and organize them into a custom Organizational Unit (OU).
+
+---
+
+### 🧭 Navigate to Active Directory Users and Computers
+
+1. Open **Server Manager**
+2. Click **Tools > Active Directory Users and Computers**
+![13](https://github.com/user-attachments/assets/ab6a9f68-12f4-45e2-8437-27b3fc059054)
+
+---
+
+### 🗂️ Explore the Domain Tree
+
+- You should see the domain listed (e.g., `lab.local`)
+- Expand the domain to see:
+  - **Computers** (currently empty)
+  - **Domain Controllers** (you’ll see `DC01`)
+  - **Users** (contains default system users/groups)
+
+---
+
+### 📁 Create a New Organizational Unit
+
+To keep things tidy, let’s move all default groups into a separate OU.
+
+1. Right-click on the domain (e.g., `lab.local`)
+2. Hover over **New > Organizational Unit**
+   ![user account dashboard](https://github.com/user-attachments/assets/e06b599c-acbd-45a7-8659-7eee6c631a91)
+4. Name it `Groups`
+![image](https://github.com/user-attachments/assets/a0b3ce87-6150-47d4-9d61-79a7e5d28d92)
+
+
+---
+
+### 📦 Move Default Groups into the OU
+
+1. Go to the **Users** folder
+2. Hold **Shift** and click to select all group objects (not users)
+   ![image](https://github.com/user-attachments/assets/d8e38241-b7a6-4e04-a477-f3170364fed5)
+4. Right-click > **Move**, and select the `Groups` OU
+5. Click **Yes** on the warning prompt
+6. Now you can see only the guest and admin is left
+   
+
+
+
+This keeps your **Users** container clean and easy to manage.
+
+---
+
+### 👑 Review the Built-In Administrator Account
+
+You’ll now see only two accounts in `Users`:
+- `Administrator`
+- `Guest`
+![image](https://github.com/user-attachments/assets/862d4046-3a9b-492b-8e26-e0f0c09c44fc)
+
+The **Administrator** account is the domain's top-level account — it belongs to multiple powerful groups including **Domain Admins**, **Enterprise Admins**, and more. It’s like having the keys to the castle.
+
+📸 *Screenshot: Administrator Account Properties*  
+![Admin Properties](images/admin-properties.png)
+
+> ⚠️ Best practice is to avoid using this account for everyday activity.
+
+---
+
+### 🙋 Create New Domain Users
+
+Let’s create domain users that we’ll later use to log in from our Windows 10 client.
+
+1. Right-click anywhere in the `Users` container
+2. Click **New > User**
+3. Enter a first and last name (e.g., `nelson mandela`)
+4. Set the user logon name as the first initial + last name (e.g., `nmandela`)
+![16](https://github.com/user-attachments/assets/af42ac59-3227-45ed-9691-fa6a97babce2)
+
+6. Click **Next**
+
+---
+
+### 🔐 Set Password
+
+1. Set a password for the account (you can use the same for all in this lab)
+2. Check **Password never expires** (for lab convenience)
+3. Click **Next**, then **Finish**
+
+📸 *Screenshot: Password Options*  
+![Password Options](images/password-options.png)
+
+---
+
+### ➕ Copy to Create More Users
+
+Instead of starting from scratch, you can **right-click your first user > Copy**, and reuse the settings.
+
+- Create 3 additional users using this method
+- Use the same password, different names/logins (e.g., `kmahomes`, `tbrady`, `jjallen`)
+
+📸 *Screenshot: Copy User*  
+![Copy User](images/copy-user.png)
+
+📸 *Screenshot: Final List of Users*  
+![User List](images/final-users.png)
+
+---
+
+> ✅ You now have **4 custom users** added to your domain — ready to be used for testing group policies and login behavior from other VMs.
+
 
 
 
