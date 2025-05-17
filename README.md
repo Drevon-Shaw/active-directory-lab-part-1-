@@ -93,7 +93,63 @@ Once installation finishes click:
    -Continue to click next and leave all the data bases and setting paths and options as deafult.
 5. Let it run through the prerequisites check and make sure everyhting is okay. It will take a few seconds and dont worry about the warnings that pop up.
    ![9](https://github.com/user-attachments/assets/fa28247b-ceee-4031-92d4-d2e335123b01)
-6. Click install and let you VM reboot. 
+6. Click install and let the VM reboot.
+
+
+---
+
+### ✅ Step 4: Verify Domain Login
+
+After `DC01` restarts, you should now see the option to log in with the **domain administrator** account.
+
+1. At the log‑in screen, confirm the sign‑in field shows `LAB\Administrator`
+   ![10](https://github.com/user-attachments/assets/2a6b43f1-35bc-4c35-820a-d604bcc503f6)
+3. Enter the same password you set during installation
+4. If you successfully reach the desktop, the domain controller is live 🎉
+
+---
+
+### 🔐 Step 5: Add Active Directory Certificate Services (AD CS)
+
+To enable secure protocols for future labs, we’ll install the Certificate Services role.
+
+1. Open **Server Manager**
+2. Click **Manage > Add Roles and Features**
+3. Select **Role‑based or feature‑based installation** and click **Next**
+4. Choose the server (`DC01`) and click **Next**
+6. On **Server Roles**, check **Active Directory Certificate Services**
+7. In the pop‑up window, click **Add Features**
+   ![11](https://github.com/user-attachments/assets/01991951-2440-413c-a5e5-46541f010fec)
+
+8. Click **Next** through all remaining pages
+9. Check **Restart the destination server automatically if required**
+10. Click **Install**
+
+📸 *Screenshot: Selecting AD CS Role*  
+![ADCS Role](images/add-adcs-role.png)
+
+---
+
+### ⚙️ Step 6: Configure Active Directory Certificate Services
+
+When installation completes and the server restarts, you’ll see a notification to configure the role:
+
+1. In **Server Manager**, click **Configure Active Directory Certificate Services**  
+   ![Configure Notification](images/configure-adcs-notify.png)
+2. Use the default (domain) credentials and click **Next**
+3. Check **Certification Authority** and click **Next**  
+   ![Select CA](images/select-ca.png)
+4. Accept all remaining defaults, clicking **Next** on each screen
+5. On the final page, click **Configure** and wait for the green ✓ confirmation
+6. Click **Close** and allow the server to restart if prompted
+
+📸 *Screenshot: Configuration Complete*  
+![ADCS Complete](images/adcs-complete.png)
+
+---
+
+> You now have a fully functional **Domain Controller** with **Active Directory Certificate Services** installed, ready for advanced tasks in later parts of the lab.
+
 
 
 
