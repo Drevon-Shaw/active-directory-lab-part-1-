@@ -37,7 +37,7 @@ Before we begin, make sure Windows Server 2022 and windows 10 is fully installed
 You can obtain official ISO files from Microsoft:  
 [https://www.microsoft.com/en-us/evalcenter/](https://www.microsoft.com/en-us/evalcenter/)
 
-**THIS LAB WILL NOT BE GOING THROUGHT THE PROCCESS OF INSTALLING VMS AND CONFIGURING THEM. IF NEEDED TO KNOW HOW TO DO THIS YOUTUBE IS GREAT. OR I WILL MAKE ANOTHER REPOSITORY ON HOW TO**
+**THIS LAB WILL NOT BE GOING THROUGH THE PROCCESS OF INSTALLING VMS AND CONFIGURING THEM. IF NEEDED TO KNOW HOW TO DO THIS YOUTUBE IS GREAT. OR I WILL MAKE ANOTHER REPOSITORY ON HOW TO**
 **VMWARE OR ORACLE VIRTUAL BOX IS FINE WHEN DOING THIS LAB. ALSO BE AWARE OF PC REQUIRMENTS BECAUSE WE WILL BE RUNNING 2 VMS AT THE SAME TIME**
 
 ---
@@ -49,11 +49,11 @@ We’ll start by renaming the default computer name to `DC01`. In this instance 
 1. Click **Start** and search for `View your PC name`
 2. Click **Rename this PC**
 3. Enter `DC01` and click **Next**
-4. Restart the system when prompted.
+4. Restart the system when after.
 
 ---
 
-### 🏗️ Step 2: Install Active Directory Domain Services (ADDS)
+### 🏗️ Step 2: Install Active Directory Domain Services 
 
 After renaming and restarting the server, we’ll configure it to act as a Domain Controller.
 
@@ -83,13 +83,14 @@ Once installation finishes click:
 ![6](https://github.com/user-attachments/assets/cbc72433-73fd-4f3e-8849-66ab4f6e0d3a)
 1. Choose **"Add a new forest"**
 2. Enter a **Root domain name** (e.g., `LAB.local`) we are going to use LAB.local since its a local lab but you can change it to anything you want .
-![7](https://github.com/user-attachments/assets/9f3717e2-ee0e-41a3-b6bf-d42c74a4ee11)
-4. Click **Next** to proceed to the Domain Controller Options screen.
--For this Screen its going to ask you to make a password for restore mode just choose any password perferabbly the same one you made for the windows server.
--Continue to click next and leave all the data bases and setting paths and options as deafult.
-5. Let it run through the prerequisites check and make sure everyhting is okay. It will take a few seconds and dont worry about the warnings that pop up.
+ ![7](https://github.com/user-attachments/assets/9f3717e2-ee0e-41a3-b6bf-d42c74a4ee11)
+3. Click **Next** to proceed to the Domain Controller Options screen.
+   For this Screen its going to ask you to make a password for restore mode just choose any password perferabbly the same one you made for the windows server.
+   Continue to click next and leave all the data bases and setting paths and options as deafult.
+
+4. Let it run through the prerequisites, check and make sure everything is okay. It will take a few seconds, ignore the warnings.
 ![9](https://github.com/user-attachments/assets/fa28247b-ceee-4031-92d4-d2e335123b01)
-6. Click install and let the VM reboot.
+5. Click install and let the VM reboot.
 
 ---
 
@@ -197,7 +198,7 @@ You’ll now see only two accounts in `Users`:
 - `Guest`
 ![image](https://github.com/user-attachments/assets/862d4046-3a9b-492b-8e26-e0f0c09c44fc)
 
-The **Administrator** account is the domain's top-level account — it belongs to multiple powerful groups including **Domain Admins**, **Enterprise Admins**, and more. It’s like having the keys to the castle.
+The **Administrator** account is the domain's top-level account  it belongs to multiple powerful groups including **Domain Admins**, **Enterprise Admins**, and more. It’s like having the keys to the castle.
 
 
 > ⚠️ Best practice is to avoid using this account for everyday activity.
@@ -262,7 +263,7 @@ Before joining the domain, we need to ensure that both virtual machines (Windows
 ### 🧾 VM Settings for Windows Server and Windows 10
 
 1. Open **Settings** for both VMs
-2. Under **System**, adjust RAM if needed — just make sure it stays in the green zone. Remember we are now runign 2 vms therefore you might need to lower it. 
+2. Under **System**, adjust RAM if needed just make sure it stays in the green zone. Remember we are now running 2 vms therefore you might need to lower it. 
 3. Under **Network**, ensure **Adapter 1** is set to:
    - **Attached to**: NAT Network
    - **Name**: `AD Network`
@@ -281,9 +282,9 @@ Before joining the domain, we need to ensure that both virtual machines (Windows
    
 ![20](https://github.com/user-attachments/assets/8bfe1a15-a917-4e77-984d-ebadda3a10a1)
 
-4. Right-click the network icon (bottom-right) > **Open Network & Internet Settings**
+4. Right click the network icon (bottom-right) > **Open Network & Internet Settings**
 5. Click **Change Adapter Options**
-6. Right-click the adapter > **Properties**
+6. Right click the adapter > **Properties**
 ![22](https://github.com/user-attachments/assets/696875c0-2002-4f02-bd45-d6b7b0255107)
 8. Double-click **Internet Protocol Version 4 (TCP/IPv4)**
 ![23](https://github.com/user-attachments/assets/4fab1aec-9bf7-4bcf-892c-a96c7e2f9ba9)
@@ -331,17 +332,16 @@ Enter the following: Copy everyting we seen in the ipconfig command propmt
 
 1. In **Settings**, search for **Access Work or School**
 ![26](https://github.com/user-attachments/assets/77d9f1fe-e6f3-4dfa-8e85-5775e6a4ccd3)
-3. Click **Connect > Join this device to a local Active Directory domain**
-4. Enter your domain (e.g., `LAB.local`)
+2. Click **Connect > Join this device to a local Active Directory domain**
+3. Enter your domain (e.g., `LAB.local`)
 ![image](https://github.com/user-attachments/assets/292f76a7-742e-4857-b7b1-ca185e500ec9)
-
-6. When prompted, enter:
+4. When prompted, enter:
    - **Username**: `Administrator`
    - **Password**: (the one set on DC01)
 ![image](https://github.com/user-attachments/assets/2284de4f-d087-4ff6-9fc7-2763528a54ef)
 
 
-7. Restart when prompted
+5. Restart when prompted
 
 ---
 
