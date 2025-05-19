@@ -1,6 +1,7 @@
 # 🛠️ Active Directory Lab – Part 1
 
-![ChatGPT Image May 16, 2025, 03_07_38 PM](https://github.com/user-attachments/assets/c3d535dd-8190-4df3-a551-48db666d5964)
+
+![AD lab diagram](https://github.com/user-attachments/assets/6971d2d4-d01b-4e98-943e-7fcb62fed4ec)
 
 
 ## 📖 Overview
@@ -21,7 +22,7 @@ This project simulates a small enterprise Active Directory environment using Win
 | Component         | OS                  | Role                     |
 |------------------|---------------------|--------------------------|
 | `DC01`           | Windows Server 2022 | Domain Controller        |
-| `Client01`       | Windows 10          | AD-connected client PC   |
+| `WS01`           | Windows 10          | AD-connected client PC   |
 
 - Both machines run on VirtualBox
 - Networking configured using **NAT Network** mode
@@ -407,8 +408,9 @@ Organizational Units are used to organize Active Directory objects such as:
    - `Administrator` → `IT`
 
 ![30a](https://github.com/user-attachments/assets/9a46496c-8763-435a-b864-902f2a7b9982) 
-![30a](https://github.com/user-attachments/assets/64f137e6-213f-40f3-9831-2ded4711a7f2)
-![30a](https://github.com/user-attachments/assets/33bb08b6-68ab-4145-9bbf-88202193bc9e)
+![30b](https://github.com/user-attachments/assets/0192ef75-4f8b-4a4b-9478-9c8cff2f4db6)
+![30c](https://github.com/user-attachments/assets/7da91378-fecb-4491-9399-cd26d5fbec7e)
+
 
 ---
 
@@ -418,10 +420,12 @@ You can create an OU inside another OU for more structure.
 
 1. Right-click the `IT` OU > **New > Organizational Unit**
 2. Name it `Administrators`
-![30a](https://github.com/user-attachments/assets/bb0ce25a-fcc9-4d7f-9c94-239c8c772c1f)
+![31](https://github.com/user-attachments/assets/cb7ab4e6-24e7-458f-87e3-5e55e47a7680)
+
 
 4. Move the `Administrator` account into the `Administrators` OU
-![30a](https://github.com/user-attachments/assets/64505e53-359e-4d09-8e3d-b05e6004e701)
+![32](https://github.com/user-attachments/assets/1d387452-4865-4b96-a4a7-d6111e8db069)
+
 
 ---
 
@@ -432,7 +436,8 @@ You can create an OU inside another OU for more structure.
 ![33](https://github.com/user-attachments/assets/e55a9ac3-0ab4-417d-8bbe-bdf26e86a974)
 4. Name the group: `EngineeringShare`
 5. Make sure **Group type** is set to **Security**
-![33](https://github.com/user-attachments/assets/1a6a12c9-f87a-40fd-92ac-fcac4e7253ec)
+![34](https://github.com/user-attachments/assets/3ee19ec3-a45d-434a-a701-d741aa4abd8e)
+
 7. Click **OK**
 
 ---
@@ -461,9 +466,9 @@ Now what we can do with this gorup is we’ll create a shared folder and restric
 5. Select **SMB Share - Quick**
 ![41](https://github.com/user-attachments/assets/4cfaa7f9-74c6-4ba8-ba93-850f2a80feeb)
 7. Leave the default location in the `C:` drive
-![41](https://github.com/user-attachments/assets/f63517f8-7142-47a2-949c-fbe9d4aee732)
+![42](https://github.com/user-attachments/assets/2548a301-a758-40cf-a375-85b56ac62793)
 9. Name the share: `EngineeringShare`
-![41](https://github.com/user-attachments/assets/94edd22e-fd8e-419b-abdd-5f85cde357b1)
+![43](https://github.com/user-attachments/assets/06bb80e5-1a88-4a72-ab85-61fd2d0b78b7)
 11. Note the share path: `\\DC01\EngineeringShare`
 
 ---
@@ -471,13 +476,15 @@ Now what we can do with this gorup is we’ll create a shared folder and restric
 ### 🔐 Customize Permissions for the Group
 
 1. When you reach the **Permissions** page, click **Customize Permissions**
-![41](https://github.com/user-attachments/assets/031b31c3-b247-44b2-9f6a-3915c6fd5f30)
+![44](https://github.com/user-attachments/assets/f08f634b-2a9e-49cb-ae86-020d8b3ce3b1)
 3. Click **Disable Inheritance** > choose **Convert inherited permissions into explicit permissions**
-5. Remove existing users (as needed) as you can see we have more users than needed **I would remove both LAB\USERS**
-6. Click **Add > Select a Principal** and add `EngineeringShare` This is the group we created.
+   ![45](https://github.com/user-attachments/assets/d4509cba-6640-4746-86d7-3816286fbad5)
+4. Remove existing users (as needed) as you can see we have more users than needed **I would remove both LAB\USERS**
+5. Click **Add > Select a Principal** and add `EngineeringShare` This is the group we created.
 ![48](https://github.com/user-attachments/assets/d9e0764b-f8c0-4296-b079-1d47f60face4)
-8. Grant **Read/Write** permissions
-9. Click **Apply > OK > Next > Create > Close** **make sure to apply the changes**
+6. Grant **Read/Write** permissions
+![49](https://github.com/user-attachments/assets/6b99f26f-4df4-4922-9732-3b4810842838)
+7. Click **Apply > OK > Next > Create > Close** **make sure to apply the changes**
 
 ---
 
@@ -486,10 +493,13 @@ Now what we can do with this gorup is we’ll create a shared folder and restric
 1. Log into the Windows 10 VM using a user in the `EngineeringShare` group (e.g., `ljackson`) this varies depending on what users you have in the engennering group
 2. Open **File Explorer**
 3. Go to **Network**, find `DC01`, and open `EngineeringShare` **Remember to turn on network sharing, also both vms have to be active**
-![48](https://github.com/user-attachments/assets/9a3b68ea-2bbd-4e2c-ba0c-393250baf4e3)
+![52](https://github.com/user-attachments/assets/9d468c3b-afff-41b1-a60d-a6f55add427d)
+
 
 You should now be able to open, create, and edit files in this shared folder.
-![48](https://github.com/user-attachments/assets/ec9128a6-8ff7-4699-8531-946be102d794)
+![53](https://github.com/user-attachments/assets/0b7a9240-9f60-406d-8a58-c1577be1a3be)
+![54](https://github.com/user-attachments/assets/38fc93cf-4a35-47f7-84f9-718af3e706ba)
+
 
 
 ---
@@ -503,11 +513,13 @@ To map the shared folder as a drive letter:
 ![55](https://github.com/user-attachments/assets/9f7c8fe6-4d19-42b0-b5d7-aa00c336a094)
 4. Choose a drive letter (e.g., `Z:`)
 5. Enter the folder path: `\\DC01\EngineeringShare`
-![55](https://github.com/user-attachments/assets/3064dbd1-3edf-486c-a3d5-f689696e38bd)
+![56](https://github.com/user-attachments/assets/ddabe20c-4ba4-407a-b371-1474ec0e1e12)
+
 7. Click **Finish**
 8. Now the EngineeringShare folder is showing up like a regular driv eon your computer
 
-![57](https://github.com/user-attachments/assets/6a156193-c072-4b1c-97d6-a2fc20d29a6d)
+![57](https://github.com/user-attachments/assets/adc8dd0e-5d6a-4cb4-968c-69c21a490754)
+
 
    ---
 
@@ -522,7 +534,8 @@ To confirm our permission settings are working correctly, log into a user **not*
 
 You will see that access to `EngineeringShare` is denied:
 
-![58](https://github.com/user-attachments/assets/589ee6c3-15ec-4c95-b3df-b6662659b711)
+![59](https://github.com/user-attachments/assets/75dd9786-b982-4948-9845-bd1921f43bc8)
+
 
 
 > 🔒 This confirms that only members of the `EngineeringShare` group can access the shared folder — enforcing proper access control using security groups and permissions.
@@ -553,24 +566,28 @@ In this step, we’ll apply a custom desktop wallpaper **only** for the `Enginee
 
 4. Save the file to the **Desktop** as a `.jpg` named `engineering_wallpaper.jpg`
 
-![61](https://github.com/user-attachments/assets/a6e755de-f274-447a-9fc9-58c00c92abda)
+![60](https://github.com/user-attachments/assets/cabc4e3e-8628-47e2-88a1-609d0f873f38)
+
 
 ---
 
 ### 📂 Copy Wallpaper to Shared Location (NetLogon)
 
-Administrators typically store login scripts and wallpapers in the `NetLogon` share.
+Administrators typically store wallpapers in the `NetLogon` share.
 
 1. In **Server Manager**, go to:
    - **File and Storage Services > Shares**
 2. Find the **NetLogon** share
-![61](https://github.com/user-attachments/assets/7b096dd6-8224-4c59-b723-6f09c111593e)
-4. Right-click it > **Open Share**
-5. Open your Desktop folder in another window
+![62](https://github.com/user-attachments/assets/e08d5ffa-8681-49c1-ac59-01d9e26995c2)
+
+3. Right-click it > **Open Share**
+4. Open your Desktop folder in another window
 ![63](https://github.com/user-attachments/assets/090440a1-fe5c-4e7a-b69c-b26cfafbad13)
-7. Copy and paste the wallpaper into the `NetLogon` folder
+5. Copy and paste the wallpaper into the `NetLogon` folder
+![64](https://github.com/user-attachments/assets/3722199e-49b7-4cf0-9264-667d49d9ed0c)
+
 ![65](https://github.com/user-attachments/assets/0fc0565d-cb62-4af9-b5ed-e2d5f676a0e9)
-8. Hold **Shift**, right-click the image file > **Copy as Path**
+6. Hold **Shift**, right-click the image file > **Copy as Path**
 ![66](https://github.com/user-attachments/assets/345e2635-bd81-41c3-beaf-38c625a78a80)
 
 
@@ -583,24 +600,23 @@ Administrators typically store login scripts and wallpapers in the `NetLogon` sh
    - **Forest > Domains > lab.local > Engineering**
 3. Right-click the `Engineering` OU > **Create a GPO in this domain, and Link it here...**
 4. Name it: `SetEngineeringBackground`
-5. ![66](https://github.com/user-attachments/assets/5becab63-6ab4-459f-bb16-20f774c2f311)
-6. Right-click the new GPO > **Edit**
+![69](https://github.com/user-attachments/assets/317788fb-6e85-43b6-ac4c-edd424311543)
+5. Right-click the new GPO > **Edit**
 ---
 
 ### 🛠️ Configure the Wallpaper Policy
 
 1. In the **Group Policy Management Editor**, navigate to:
    - `User Configuration > Policies > Administrative Templates > Desktop > Desktop`
-2. Double-click **Desktop Wallpaper**
+2. Double click **Desktop Wallpaper**
 3. Choose **Enabled**
-![66](https://github.com/user-attachments/assets/5e259a59-84cb-479d-b026-8a3af75e17ae)
-5. Paste the full path to the `.jpg` file from NetLogon (example):
+4. Paste the full path to the `.jpg` file from NetLogon (example):
    ```
    \\DC01\netlogon\engineering_wallpaper.jpg
    ```
-6. Set **Wallpaper Style** to `Center`
+![71](https://github.com/user-attachments/assets/557df7ed-5c1d-46ff-9023-5d6fcb66129c)
+
 7. Click **OK**
-![66](https://github.com/user-attachments/assets/21f7de1f-7ec7-49e9-b735-ff58d07e22eb)
 
 ---
 
@@ -609,11 +625,13 @@ Administrators typically store login scripts and wallpapers in the `NetLogon` sh
 1. Switch to your **Windows 10 VM**
 2. Log in as a user from the **Engineering OU** (e.g., `ljackson`, `nmandela`)
 3. You should now see the custom **Engineering Dept** wallpaper!
-![66](https://github.com/user-attachments/assets/3432c401-293e-4c94-abf9-916160b06287)
+![72](https://github.com/user-attachments/assets/b038676c-b31f-4a76-85c2-134c5db18d1e)
+
    **THIS IS WHERE I MESSED UP BY NOT PLACING THE WORDING IN THE CENTER**
 4. Now log in as a non-engineering user (e.g., from Management)
 5. You’ll notice the **default wallpaper is still applied**, confirming the GPO was targeted correctly
-![66](https://github.com/user-attachments/assets/8abd6162-731b-498c-8966-1b8ee0ef5cd9)
+![73](https://github.com/user-attachments/assets/cca2d847-d728-4bcd-8058-bdc95d551b33)
+
 
 ---
 
@@ -632,10 +650,9 @@ In this final step, we’ll simulate a real-world account lockout scenario and w
 
 1. On the Domain Controller, go to **Tools > Group Policy Management**
 2. Right-click on your domain (`lab.local`) > **Create a GPO in this domain, and Link it here**
-![74](https://github.com/user-attachments/assets/d0cb7a49-863a-42dc-b887-617f037fbb8b)
-4. Name it: `AccountLockoutPolicy`
-![74](https://github.com/user-attachments/assets/570ed8ac-f763-4667-ade7-34cc175eb013)
-6. Right-click the GPO > **Edit**
+3. Name it: `AccountLockoutPolicy`
+![75](https://github.com/user-attachments/assets/22e8f137-2c47-4647-8e2e-45ced7c3761a)
+4. Right-click the GPO > **Edit**
 
 ---
 
@@ -644,11 +661,13 @@ In this final step, we’ll simulate a real-world account lockout scenario and w
 1. Navigate to:
    - `Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Account Lockout Policy`
 2. Double-click **Account lockout threshold**
+![76](https://github.com/user-attachments/assets/e8f0b96e-d963-45a5-bf37-2bb4e94891d6)
+
 3. Set to: `3` (invalid login attempts before lockout)
+![77](https://github.com/user-attachments/assets/2e2fa917-0cd6-4b1f-802c-69674672cf90)
 4. Click **Apply**
-![74](https://github.com/user-attachments/assets/18fc288a-7794-4a2e-a858-eb9bf3da7a11)
 5. Right-click the GPO again > **Enforce**, to make sure it's active
-![74](https://github.com/user-attachments/assets/05d93aea-f424-4fc8-a77f-8e58c7ff037e)
+![79](https://github.com/user-attachments/assets/23ecf288-545f-4414-8e88-8cbfc1662667)
 
 ---
 
@@ -659,7 +678,8 @@ In this final step, we’ll simulate a real-world account lockout scenario and w
 
 After the 3rd failed attempt, the user will be locked out:
 
-![74](https://github.com/user-attachments/assets/a674be36-1ccb-4c63-9346-d96da02dfb57)
+![80](https://github.com/user-attachments/assets/e0b09fbc-0446-4cef-bf01-d17729bf46ed)
+
 
 ---
 
@@ -672,6 +692,8 @@ After the 3rd failed attempt, the user will be locked out:
 ![81](https://github.com/user-attachments/assets/15364292-07dd-4a6c-a8d1-6a03c3e7c496)
 3. Right-click the user > **Properties > Account tab**
 4. Uncheck **Password never expires**
+![83](https://github.com/user-attachments/assets/7124c046-2bba-4d94-8eb1-8c0dd89e96ad)
+
 5. Click **Apply**
 ![83](https://github.com/user-attachments/assets/d6f5de5c-ccec-483b-8c89-840c1ac70000)
 **REMEMBER FOR THIS LAB WHEN WE CREATED THE PASSWORDS WE DID PASSWORD NEVER EXPIRES THEREFORE WE HAVE TO CHANGE IT IN ORDER FOR THE USER TO RESET HIS PASSWORD ON NEW LOG IN **
@@ -689,11 +711,12 @@ After the 3rd failed attempt, the user will be locked out:
 1. Go back to the **Windows 10 VM**
 2. Log in as the user with the **new password**
 3. You’ll be prompted to **create a new password**
-4. After that, you'll be successfully logged in
-![84](https://github.com/user-attachments/assets/7459a72c-78af-4c3b-83e2-d2270e609896)
-![84](https://github.com/user-attachments/assets/c1a806a6-d825-4ff8-bc72-e9fc08e0d110)
+![85](https://github.com/user-attachments/assets/ea7ade54-6dcb-47e4-bb24-9c40dbe93040)
+![86](https://github.com/user-attachments/assets/2cce6568-8e9c-4991-87ea-27a05dcf1512)
 
-> 🎉 Congratulations! You’ve completed the full Active Directory Lab – including domain setup, user creation, OU organization, GPOs, file permissions, and account recovery!
+4. After that, you'll be successfully logged in
+
+> 🎉 Congratulations! You’ve completed the full Active Directory Lab  including domain setup, user creation, OU organization, GPOs, file permissions, and account recovery!
 
 
 ---
@@ -706,9 +729,9 @@ In this Active Directory Lab, we built and explored a foundational enterprise-li
 
 - 🔧 **Configured a Domain Controller** using Active Directory Domain Services
 - 💻 **Joined a Windows 10 machine** to the domain
-- 👥 **Created and managed domain users** using Organizational Units (OUs)
+- 👥 **Created and managed domain users** using Organizational Units 
 - 📂 **Created security groups** and applied **file share permissions**
-- 🔐 **Set Group Policy Objects (GPOs)** to enforce desktop backgrounds and lockout policies
+- 🔐 **Set Group Policy Objects** to enforce desktop backgrounds and lockout policies
 - 🧪 **Simulated account lockout** scenarios and learned how to reset passwords and unlock users
 
 These are **core tasks** that IT administrators regularly perform in real-world enterprise environments.
@@ -724,8 +747,9 @@ Using PowerShell, admins can:
 - Assign group memberships programmatically
 - Set GPOs and apply permissions at scale
 - Automate auditing, lockout monitoring, and incident response
+### In part 2 of the lab we will be setting up a siem using splunk, Attcking the machine using Kali, and Ingesting logs to the siem using sysmon stay tuned. 
 
-> Thank you for checking out this lab! If you found it helpful, feel free to fork the repo, share feedback, or build on top of it.
+> Thank you for checking out this lab!
 
 
 
