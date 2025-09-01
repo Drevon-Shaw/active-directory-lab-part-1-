@@ -45,8 +45,6 @@ By completing this lab, you will learn how to:
 ## ⚡ Tips for Using This Lab
 
 - Follow the steps in **order** to avoid errors.  
-- Screenshots are stored in the `screenshots/` folder; update relative paths in the Markdown if you add new images.  
-- Scripts for automation (if included) are located in `scripts/`. Run them carefully.  
 - Use the TOC links to jump directly to each lab section.  
 
 ---
