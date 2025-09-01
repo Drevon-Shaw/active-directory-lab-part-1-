@@ -19,23 +19,26 @@ By completing this lab, you will learn how to:
 
 ## 🗂️ Table of Contents
 
-1. [Lab Preparation](docs/Labprep.md)  
+## 🗂️ Table of Contents
+
+1. [Lab Preparation](Labprep.md)  
    Prepare your environment and review prerequisites before starting.
 
-2. [Active Directory Installation](docs/01_AD_Install.md)  
+2. [Active Directory Installation](01_AD_Install.md)  
    Steps to rename your server, install Active Directory Domain Services, promote to Domain Controller, and configure Certificate Services.
 
-3. [Users and Organizational Units (OUs)](docs/03_UsersAndOUs.md)  
+3. [Users and Organizational Units (OUs)](03_UsersAndOUs.md)  
    Create users, organize OUs, and configure security groups for departmental access.
 
-4. [Group Policy Objects (GPOs)](docs/04_GPOs.md)  
+4. [Group Policy Objects (GPOs)](04_GPOs.md)  
    Apply GPOs for custom wallpapers, lockout policies, and other user/computer configurations.
 
-5. [Account Lockout & Password Reset](docs/05_AccountLockout.md)  
+5. [Account Lockout & Password Reset](05_AccountLockout.md)  
    Simulate account lockouts and learn how to reset and unlock user accounts safely.
 
-6. [Lab Summary & Key Takeaways](docs/06_LabSummary.md)  
+6. [Lab Summary & Key Takeaways](06_LabSummary.md)  
    Review what you’ve learned and confirm all objectives were completed successfully.
+
 
 ---
 
