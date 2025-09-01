@@ -68,5 +68,7 @@ Administrators typically store wallpapers in the `NetLogon` share.
    - `User Configuration → Policies → Administrative Templates → Desktop → Desktop`  
 2. Double-click **Desktop Wallpaper**  
 3. Choose **Enabled**  
-4. Paste the full path to the `.jpg` file from NetLogon (example):  
+4. Paste the full path to the `.jpg` file from NetLogon
+
+> 🧠 This demonstrates how to apply GPOs to specific user groups using OUs — a key concept in managing enterprise environments.
 
