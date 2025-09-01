@@ -46,7 +46,7 @@ This lab simulated a small enterprise Active Directory environment using **Windo
 2. Applying policies and permissions effectively
 3. Hands-on experience with real-world IT admin tasks
 4. Troubleshooting user access issues
-5. Preparing for further cybersecurity labs like **SOC setups** or **Azure AD management**
+5. Preparing for further cybersecurity labs like **SOC setups**
 
 ---
 
