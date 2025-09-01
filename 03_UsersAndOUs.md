@@ -32,7 +32,7 @@ Add users to the group:
 
 Example: EngineeringShare → add all Engineering OU users.
 
-Screenshot: ![Group Creation](https://github.com/user-attachments/assets/your_group_creation_screenshot.png)
+Screenshot: ![35](https://github.com/user-attachments/assets/0482789e-260d-453d-b5cf-0d4cbf703f9f)
 
 4️⃣ Create and Secure a Shared Folder
 
