@@ -1,6 +1,6 @@
 # 🛠️ Active Directory Lab – Part 1
 
-Welcome to my **Active Directory Lab** repository! This lab demonstrates key Active Directory administration tasks in a small enterprise simulation using **Windows Server 2022** and **Windows 10**. The lab is broken into modular steps to guide you through domain setup, user management, group policies, account security, and more.
+Welcome to my **Active Directory Lab**  This lab demonstrates key Active Directory administration tasks in a small enterprise simulation using **Windows Server 2022** and **Windows 10**. The lab is broken into modular steps to guide you through domain setup, user management, group policies, account security, and more.
 
 ---
 
