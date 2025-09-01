@@ -24,7 +24,7 @@ By completing this lab, you will learn how to:
 1. [Lab Preparation](Labprep.md)  
    Prepare your environment and review prerequisites before starting.
 
-2. [Active Directory Installation](01_AD_Install.md)  
+2. [Active Directory Installation](02_ADInstall.md)  
    Steps to rename your server, install Active Directory Domain Services, promote to Domain Controller, and configure Certificate Services.
 
 3. [Users and Organizational Units (OUs)](03_UsersAndOUs.md)  
