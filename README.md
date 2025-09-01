@@ -75,23 +75,20 @@ By completing this lab, the following skills were gained:
 * Hands-on troubleshooting for account lockouts
 
 
-## 🗂️ Lab Table of Contents
+## 🗂️ Table of Contents
 
-1. [📖 Lab Overview](#-lab-overview)
-2. [🖥️ Environment](#-environment)
-3. [🔧 Step 1: Rename the Server](#-step-1-rename-the-server)
-4. [🏗️ Step 2: Install Active Directory Domain Services](#-step-2-install-active-directory-domain-services)
-5. [🏁 Step 3: Promote Server to Domain Controller](#-step-3-promote-server-to-domain-controller)
-6. [✅ Step 4: Verify Domain Login](#-step-4-verify-domain-login)
-7. [🔐 Step 5: Add Active Directory Certificate Services (AD CS)](#-step-5-add-active-directory-certificate-services-ad-cs)
-8. [⚙️ Step 6: Configure Active Directory Certificate Services](#-step-6-configure-active-directory-certificate-services)
-9. [3️⃣ Create Organizational Units (OUs)](#3-create-organizational-units-ous)
-10. [3️⃣ Create Users & Security Groups](#3-create-users--security-groups)
-11. [📂 Create and Secure a Shared Folder](#-create-and-secure-a-shared-folder)
-12. [🔐 Customize Permissions for the Group](#-customize-permissions-for-the-group)
-13. [🎨 Step 10: Apply a Group Policy Object (GPO) – Custom Wallpaper](#-step-10-apply-a-group-policy-object-gpo--custom-wallpaper)
-14. [🔒 Step 11: Account Lockout Policy & Password Reset](#-step-11-account-lockout-policy--password-reset)
-15. [💡 Lab Outcomes](#-lab-outcomes)
+1. [Lab Preparation](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/Labprep.md)
+2. [Create Users and Organizational Units (OUs)](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/03_UsersAndOUs.md)
+3. [Create Group Policy Objects (GPOs)](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/04_GPOs.md)
+4. [Account Lockout Policy & Password Reset](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/05_AccountLockout.md)
+5. [Lab Summary](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/06_LabSummary.md)
+
+### 📌 How to Use This Table of Contents
+
+- **Click on any of the above links** to navigate directly to that section.
+- **Follow the steps in order** to set up and configure your Active Directory environment.
+- **Ensure all prerequisites are met** as outlined in the Lab Preparation section before proceeding.
+
 
 
 
