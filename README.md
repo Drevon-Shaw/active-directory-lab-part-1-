@@ -39,8 +39,6 @@ By completing this lab, you will learn how to:
 
 ---
 
-## 📁 Repository Structure
-
 
 ---
 
