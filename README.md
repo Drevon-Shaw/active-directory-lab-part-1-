@@ -1,93 +1,59 @@
+# 🛠️ Active Directory Lab – Part 1
 
-
-# 🛠️ Active Directory Lab
-
-![AD Lab Diagram](https://github.com/user-attachments/assets/6971d2d4-d01b-4e98-943e-7fcb62fed4ec)
-
-## 📖 Lab Overview
-
-This lab simulates a small enterprise Active Directory environment using **Windows Server 2022** and **Windows 10**. It demonstrates key IT administration tasks and foundational skills in:
-
-* Active Directory domain setup
-* User and group management
-* Organizational Unit (OU) structuring
-* Group Policy Object (GPO) configuration
-* File share permissions and access control
-* Account lockout and password recovery
-
-**Lab Goals:**
-
-* Configure a Domain Controller (DC) and join a Windows 10 client
-* Create and manage users, OUs, and security groups
-* Apply GPOs for user policies (desktop wallpaper, lockout policy)
-* Test file share permissions and group-based access control
+Welcome to my **Active Directory Lab** repository! This lab demonstrates key Active Directory administration tasks in a small enterprise simulation using **Windows Server 2022** and **Windows 10**. The lab is broken into modular steps to guide you through domain setup, user management, group policies, account security, and more.
 
 ---
 
-## 🖥️ Environment
+## 🎯 Lab Objectives
 
-| Component | OS                  | Role                |
-| --------- | ------------------- | ------------------- |
-| `DC01`    | Windows Server 2022 | Domain Controller   |
-| `WS01`    | Windows 10          | AD-connected client |
+By completing this lab, you will learn how to:
 
-* Both machines run on **VirtualBox** with NAT networking
-* Domain: `LAB.local`
-* 4 custom users created for testing policies and permissions
-
----
-
-## 🧠 Key Skills Demonstrated
-
-* ✅ Domain Controller setup and AD DS installation
-* ✅ OU creation and user management
-* ✅ Security group creation and shared folder permissions
-* ✅ GPO creation and targeted application (wallpaper, account lockout)
-* ✅ Simulation of real-world scenarios: account lockout & recovery
+- Install and configure a **Domain Controller**
+- Create and manage **Users, Groups, and Organizational Units (OUs)**
+- Apply **Group Policy Objects (GPOs)** for desktops and security policies
+- Configure **file share permissions** and test group-based access
+- Implement **account lockout policies** and password recovery
+- Gain practical, hands-on **Active Directory administration skills**
 
 ---
-
-## 👥 Users, Groups & Access Control
-
-* Department-based OUs: `Engineering`, `Management`, `IT`
-* Nested OU for administrators
-* Security group `EngineeringShare` with controlled access to shared folder
-* Enforced **least privilege access** with testing of denied permissions
-
----
-
-## 🔐 GPOs & Policy Enforcement
-
-* Custom desktop wallpaper applied for **Engineering OU** users
-* Domain-wide account lockout policy (3 invalid login attempts)
-* Demonstrated account unlock and password reset workflow
-
----
-
-## 💡 Lab Outcomes
-
-By completing this lab, the following skills were gained:
-
-* Enterprise Active Directory administration
-* Practical application of OUs, groups, and GPOs
-* File share management and permission testing
-* Understanding domain-joined client workflows
-* Hands-on troubleshooting for account lockouts
-
 
 ## 🗂️ Table of Contents
 
-1. [Lab Preparation](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/Labprep.md)
-2. [Create Users and Organizational Units (OUs)](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/03_UsersAndOUs.md)
-3. [Create Group Policy Objects (GPOs)](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/04_GPOs.md)
-4. [Account Lockout Policy & Password Reset](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/05_AccountLockout.md)
-5. [Lab Summary](https://github.com/Drevon-Shaw/active-directory-lab-part-1-/blob/main/06_LabSummary.md)
+1. [Lab Preparation](docs/Labprep.md)  
+   Prepare your environment and review prerequisites before starting.
 
-### 📌 How to Use This Table of Contents
+2. [Active Directory Installation](docs/01_AD_Install.md)  
+   Steps to rename your server, install Active Directory Domain Services, promote to Domain Controller, and configure Certificate Services.
 
-- **Click on any of the above links** to navigate directly to that section.
-- **Follow the steps in order** to set up and configure your Active Directory environment.
-- **Ensure all prerequisites are met** as outlined in the Lab Preparation section before proceeding.
+3. [Users and Organizational Units (OUs)](docs/03_UsersAndOUs.md)  
+   Create users, organize OUs, and configure security groups for departmental access.
+
+4. [Group Policy Objects (GPOs)](docs/04_GPOs.md)  
+   Apply GPOs for custom wallpapers, lockout policies, and other user/computer configurations.
+
+5. [Account Lockout & Password Reset](docs/05_AccountLockout.md)  
+   Simulate account lockouts and learn how to reset and unlock user accounts safely.
+
+6. [Lab Summary & Key Takeaways](docs/06_LabSummary.md)  
+   Review what you’ve learned and confirm all objectives were completed successfully.
+
+---
+
+## 📁 Repository Structure
+
+
+---
+
+## ⚡ Tips for Using This Lab
+
+- Follow the steps in **order** to avoid errors.  
+- Screenshots are stored in the `screenshots/` folder; update relative paths in the Markdown if you add new images.  
+- Scripts for automation (if included) are located in `scripts/`. Run them carefully.  
+- Use the TOC links to jump directly to each lab section.  
+
+---
+
+> 🎉 By completing this lab, you’ll gain hands-on experience with Active Directory administration, foundational IT security skills, and a solid understanding of enterprise workflows.
 
 
 
