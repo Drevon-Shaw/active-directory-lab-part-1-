@@ -1,50 +1,72 @@
-04_GPOs.md
-1️⃣ Create a Group Policy Object (GPO)
+ Apply a Group Policy Object (GPO) – Custom Wallpaper
 
-Open Group Policy Management on the Domain Controller.
+**Group Policy Objects (GPOs)** control system behavior for users, groups, or computers in an Active Directory environment.  
 
-Right-click your domain → Create a GPO in this domain, and Link it here…
+In this step, we’ll apply a custom desktop wallpaper **only** for the `Engineering` OU users using GPO.
 
-Name the GPO (e.g., EngineeringWallpaperPolicy).
+---
 
-Screenshot: ![GPO Creation](https://github.com/user-attachments/assets/your_gpo_creation_screenshot.png)
+### 🖼️ Create the Custom Wallpaper
 
-2️⃣ Configure Desktop Wallpaper for OU
+1. Open **Paint** on your Domain Controller.  
+2. Create a large background image and type:
 
-Right-click the GPO → Edit.
 
-Navigate to User Configuration → Policies → Administrative Templates → Desktop → Desktop → Desktop Wallpaper.
 
-Enable the setting, enter the wallpaper path, and choose Fill for the style.
+![61](https://github.com/user-attachments/assets/cdbe29fc-cabf-4eb0-84ae-000e7747909c)  
+*Remember to center the words – a small mistake might happen, that’s okay.*
 
-Screenshot: ![Wallpaper Policy](https://github.com/user-attachments/assets/your_wallpaper_screenshot.png)
+3. Save the file to the **Desktop** as `engineering_wallpaper.jpg`  
 
-3️⃣ Apply Account Lockout Policy
+![60](https://github.com/user-attachments/assets/cabc4e3e-8628-47e2-88a1-609d0f873f38)  
 
-Navigate to Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy.
+---
 
-Configure:
+### 📂 Copy Wallpaper to Shared Location (NetLogon)
 
-Account lockout threshold → 3 invalid login attempts
+Administrators typically store wallpapers in the `NetLogon` share.
 
-Account lockout duration → 15 minutes
+1. In **Server Manager**, go to:
+   - **File and Storage Services → Shares**
+2. Find the **NetLogon** share  
 
-Reset account lockout counter after → 15 minutes
+![62](https://github.com/user-attachments/assets/e08d5ffa-8681-49c1-ac59-01d9e26995c2)  
 
-Screenshot: ![Lockout Policy](https://github.com/user-attachments/assets/your_lockout_screenshot.png)
+3. Right-click → **Open Share**  
+4. Open your Desktop folder in another window  
 
-4️⃣ Link GPO to OU
+![63](https://github.com/user-attachments/assets/090440a1-fe5c-4e7a-b69c-b26cfafbad13)  
 
-In Group Policy Management, drag the GPO onto the target OU (e.g., Engineering).
+5. Copy and paste the wallpaper into the `NetLogon` folder  
 
-Right-click the OU → Link an Existing GPO → select the created GPO.
+![64](https://github.com/user-attachments/assets/3722199e-49b7-4cf0-9264-667d49d9ed0c)  
+![65](https://github.com/user-attachments/assets/0fc0565d-cb62-4af9-b5ed-e2d5f676a0e9)  
 
-Screenshot: ![Link GPO](https://github.com/user-attachments/assets/your_link_gpo_screenshot.png)
+6. Hold **Shift**, right-click the image file → **Copy as Path**  
 
-5️⃣ Test GPO Application
+![66](https://github.com/user-attachments/assets/345e2635-bd81-41c3-beaf-38c625a78a80)  
 
-Log in as a user within the OU.
+---
 
-Verify that the desktop wallpaper is applied and account lockout policy works by testing invalid logins.
+### ⚙️ Create and Link a GPO for Engineering
 
-Screenshot: ![GPO Test](https://github.com/user-attachments/assets/your_gpo_test_screenshot.png)
+1. Go to **Tools → Group Policy Management**  
+2. Expand:  
+   - **Forest → Domains → lab.local → Engineering**  
+3. Right-click the `Engineering` OU → **Create a GPO in this domain, and Link it here…**  
+4. Name it: `SetEngineeringBackground`  
+
+![69](https://github.com/user-attachments/assets/317788fb-6e85-43b6-ac4c-edd424311543)  
+
+5. Right-click the new GPO → **Edit**  
+
+---
+
+### 🛠️ Configure the Wallpaper Policy
+
+1. In the **Group Policy Management Editor**, navigate to:  
+   - `User Configuration → Policies → Administrative Templates → Desktop → Desktop`  
+2. Double-click **Desktop Wallpaper**  
+3. Choose **Enabled**  
+4. Paste the full path to the `.jpg` file from NetLogon (example):  
+
