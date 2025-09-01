@@ -20,52 +20,53 @@ This section covers creating users, organizational units, and security groups in
 
 ---
 
-## 2️⃣ Create Users
+3️⃣ Create Security Groups
 
-1. In ADUC, navigate to the OU where you want to create a user.
-2. Right-click → **New** → **User**.
-3. Enter first name, last name, username, and password.
-4. Repeat for multiple users in each OU.
+Navigate to the OU where groups should reside.
 
-**Screenshot:**
+Right-click → New → Group.
 
-![16](https://github.com/user-attachments/assets/af42ac59-3227-45ed-9691-fa6a97babce2)
+Name the group, select Security, and choose the scope (usually Global).
 
----
+Add users to the group:
 
-## 3️⃣ Create Security Groups
+Example: EngineeringShare → add all Engineering OU users.
 
-1. Navigate to the OU where groups should reside.
-2. Right-click → **New** → **Group**.
-3. Name the group, select **Security**, and choose the scope (usually **Global**).
-4. Add users to the group:
-   - Example: `EngineeringShare` → add all Engineering OU users.
+Screenshot: ![Group Creation](https://github.com/user-attachments/assets/your_group_creation_screenshot.png)
 
-**Screenshot:**
+4️⃣ Create and Secure a Shared Folder
 
-![34](https://github.com/user-attachments/assets/3ee19ec3-a45d-434a-a701-d741aa4abd8e)
+Go to Server Manager → File and Storage Services → Shares
+![38](https://github.com/user-attachments/assets/0009c73e-b969-48af-91b6-6abe22cd2441)
 
----
+On the right, under Tasks, click New Share
+![40](https://github.com/user-attachments/assets/3eab63b9-3884-47a4-884b-20d06fb0972a)
 
-## 4️⃣ Assign Group-Based Access
+Select SMB Share - Quick
+![41](https://github.com/user-attachments/assets/4cfaa7f9-74c6-4ba8-ba93-850f2a80feeb)
 
-1. Right-click the shared folder → **Properties** → **Security**.
-2. Add the group (e.g., `EngineeringShare`) and assign permissions (Read/Write/Modify).
-3. Test by logging in as a user from the OU to verify access.
+Leave the default location on the C: drive
+![42](https://github.com/user-attachments/assets/2548a301-a758-40cf-a375-85b56ac62793)
 
-**Screenshot:**
+Name the share: EngineeringShare
+![43](https://github.com/user-attachments/assets/06bb80e5-1a88-4a72-ab85-61fd2d0b78b7)
 
+Note the share path: \\DC01\EngineeringShare
+
+🔐 Customize Permissions for the Group
+
+On the Permissions page, click Customize Permissions
 ![44](https://github.com/user-attachments/assets/f08f634b-2a9e-49cb-ae86-020d8b3ce3b1)
+
+Click Disable Inheritance → Convert inherited permissions into explicit permissions
+![45](https://github.com/user-attachments/assets/d4509cba-6640-4746-86d7-3816286fbad5)
+
+Remove unnecessary users (e.g., LAB\USERS).
+
+Click Add → Select a Principal, add EngineeringShare group
+![48](https://github.com/user-attachments/assets/d9e0764b-f8c0-4296-b079-1d47f60face4)
+
+Grant Read/Write permissions
 ![49](https://github.com/user-attachments/assets/6b99f26f-4df4-4922-9732-3b4810842838)
-![53](https://github.com/user-attachments/assets/0b7a9240-9f60-406d-8a58-c1577be1a3be)
 
----
-
-## ✅ Outcomes
-
-By completing this section, you can:
-
-- Create OUs for organizational structure
-- Add users to AD and assign passwords
-- Create security groups and apply group-based permissions
-- Enforce least privilege access for shared resources
+Click Apply → OK → Next → Create → Close
