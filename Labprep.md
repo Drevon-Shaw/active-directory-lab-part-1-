@@ -27,12 +27,4 @@ Prepare the environment for the Active Directory lab. This includes setting up v
 
 4. Configure **NAT or Host-only networking** for communication between the VMs.
 
----
-## Lab Prep Screenshots
-
-### VM Setup
-![VM Setup](assets/screenshots/lab_prep/vm_setup.png)
-
-### Network Configuration
-![Network Config](assets/screenshots/lab_prep/network_config.png)
 
