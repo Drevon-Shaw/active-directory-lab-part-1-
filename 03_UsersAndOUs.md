@@ -55,7 +55,9 @@ This section covers creating users, organizational units, and security groups in
 
 **Screenshot:**
 
-![Folder Permissions](assets/screenshots/users_ous/folder_permissions.png)
+![44](https://github.com/user-attachments/assets/f08f634b-2a9e-49cb-ae86-020d8b3ce3b1)
+![49](https://github.com/user-attachments/assets/6b99f26f-4df4-4922-9732-3b4810842838)
+![53](https://github.com/user-attachments/assets/0b7a9240-9f60-406d-8a58-c1577be1a3be)
 
 ---
 
