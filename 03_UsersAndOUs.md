@@ -43,7 +43,7 @@ This section covers creating users, organizational units, and security groups in
 
 **Screenshot:**
 
-![43](https://github.com/user-attachments/assets/06bb80e5-1a88-4a72-ab85-61fd2d0b78b7)
+![34](https://github.com/user-attachments/assets/3ee19ec3-a45d-434a-a701-d741aa4abd8e)
 
 ---
 
